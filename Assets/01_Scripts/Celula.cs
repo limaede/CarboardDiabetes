@@ -10,11 +10,13 @@ public class Celula : MonoBehaviour
     private Spawner spawner;
 
     public GameObject celulaAbierta;
+    private AudioSource audioSource;
 
     void Start()
     {
         // Encuentra el objeto Spawner en la escena
         spawner = FindObjectOfType<Spawner>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class Celula : MonoBehaviour
         if (insulina < 2)
         {
             insulina++;
+            audioSource.Play();
         }
         else
         {

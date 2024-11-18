@@ -6,8 +6,13 @@ public class CelulaLlena : MonoBehaviour
     private int impactosRecibidos = 0; // Contador de impactos
     public bool estaLlena = false; // Indica si la célula está llena
 
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
+        audioSource.Play();
     }
 
     void Update()

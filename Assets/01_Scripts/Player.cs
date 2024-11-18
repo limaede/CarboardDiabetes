@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private NewInputSystem inputSystem;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public AudioSource audioShoot;
+    public AudioSource audioLoad;
 
     void Awake()
     {
@@ -23,7 +25,9 @@ public class Player : MonoBehaviour
         inputSystem.Player.Charge.performed += ctx => Reload();
 
         currentAmmo = maxAmmo; // Inicializa con la munición máxima
+
     }
+    
 
     void AttemptShoot()
     {
@@ -44,12 +48,14 @@ public class Player : MonoBehaviour
     void Reload()
     {
         // Restaura la munición al máximo
+        audioShoot.Play();
         currentAmmo = maxAmmo;
         Debug.Log("Recargado. Munición completa.");
     }
 
     void Shoot()
     {
+        audioShoot.Play();
         Instantiate(bulletPrefab, firePoint.position, transform.rotation);
     }
 
