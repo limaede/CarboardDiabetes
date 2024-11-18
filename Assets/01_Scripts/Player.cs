@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -18,14 +19,20 @@ public class Player : MonoBehaviour
     public AudioSource audioShoot;
     public AudioSource audioLoad;
 
+    [Header("UI")]
+    public Text cantInsu;
+    public Text TotalcantInsu;
+
     void Awake()
     {
+        cantInsu.text = maxAmmo.ToString();
         inputSystem = new NewInputSystem();
         inputSystem.Player.Shoot.performed += ctx => AttemptShoot();
         inputSystem.Player.Charge.performed += ctx => Reload();
 
         currentAmmo = maxAmmo; // Inicializa con la munición máxima
 
+        TotalcantInsu.text = currentAmmo.ToString();
     }
     
 
@@ -37,6 +44,8 @@ public class Player : MonoBehaviour
             Shoot();
             lastShootTime = Time.time; // Actualiza el tiempo del último disparo
             currentAmmo--; // Reduce la munición
+
+            TotalcantInsu.text = currentAmmo.ToString();
             Debug.Log($"Disparos restantes: {currentAmmo}");
         }
         else if (currentAmmo <= 0)
@@ -50,6 +59,8 @@ public class Player : MonoBehaviour
         // Restaura la munición al máximo
         audioShoot.Play();
         currentAmmo = maxAmmo;
+
+        TotalcantInsu.text = currentAmmo.ToString();
         Debug.Log("Recargado. Munición completa.");
     }
 
