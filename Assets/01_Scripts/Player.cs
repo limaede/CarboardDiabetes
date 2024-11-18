@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -29,12 +30,17 @@ public class Player : MonoBehaviour
         inputSystem = new NewInputSystem();
         inputSystem.Player.Shoot.performed += ctx => AttemptShoot();
         inputSystem.Player.Charge.performed += ctx => Reload();
+        inputSystem.Player.Extra.performed += ctx => ShowMenu();
 
         currentAmmo = maxAmmo; // Inicializa con la munición máxima
 
         TotalcantInsu.text = currentAmmo.ToString();
     }
-    
+    public void ShowMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
 
     void AttemptShoot()
     {

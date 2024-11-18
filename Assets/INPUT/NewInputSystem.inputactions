@@ -1,5 +1,5 @@
 {
-    "name": "NewInput",
+    "name": "NewInputSystem",
     "maps": [
         {
             "name": "Player",
@@ -18,6 +18,15 @@
                     "name": "Charge",
                     "type": "Button",
                     "id": "d4c8dfcf-88ec-4d75-a489-8eb02b11e1de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Extra",
+                    "type": "Button",
+                    "id": "d226d59c-7901-4d79-9552-4c5321c37dd8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Charge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ca7eb7c-cab6-475f-8bf0-f7fa1f1a1764",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Extra",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

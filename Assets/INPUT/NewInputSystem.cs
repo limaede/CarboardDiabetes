@@ -44,6 +44,15 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Extra"",
+                    ""type"": ""Button"",
+                    ""id"": ""d226d59c-7901-4d79-9552-4c5321c37dd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Charge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ca7eb7c-cab6-475f-8bf0-f7fa1f1a1764"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Extra"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Charge = m_Player.FindAction("Charge", throwIfNotFound: true);
+        m_Player_Extra = m_Player.FindAction("Extra", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +162,14 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Charge;
+    private readonly InputAction m_Player_Extra;
     public struct PlayerActions
     {
         private @NewInputSystem m_Wrapper;
         public PlayerActions(@NewInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Charge => m_Wrapper.m_Player_Charge;
+        public InputAction @Extra => m_Wrapper.m_Player_Extra;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +185,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @Charge.started += instance.OnCharge;
             @Charge.performed += instance.OnCharge;
             @Charge.canceled += instance.OnCharge;
+            @Extra.started += instance.OnExtra;
+            @Extra.performed += instance.OnExtra;
+            @Extra.canceled += instance.OnExtra;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -172,6 +198,9 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
             @Charge.started -= instance.OnCharge;
             @Charge.performed -= instance.OnCharge;
             @Charge.canceled -= instance.OnCharge;
+            @Extra.started -= instance.OnExtra;
+            @Extra.performed -= instance.OnExtra;
+            @Extra.canceled -= instance.OnExtra;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -193,5 +222,6 @@ public partial class @NewInputSystem: IInputActionCollection2, IDisposable
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnCharge(InputAction.CallbackContext context);
+        void OnExtra(InputAction.CallbackContext context);
     }
 }
