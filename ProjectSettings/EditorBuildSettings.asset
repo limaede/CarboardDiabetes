@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.26.0/Hello Cardboard/Scenes/HelloCardboard.unity
     guid: 03c48c5e809944fa4afcae9973709f26
   - enabled: 1
+    path: Assets/00_Scenes/MainMenu.unity
+    guid: 6221976955a0f4245b27312be1e8f0c4
+  - enabled: 1
+    path: Assets/00_Scenes/CardboardVeinScene 1.unity
+    guid: bf037213e11c2e84387ec48f2c08c2fa
+  - enabled: 0
     path: Assets/00_Scenes/CardboardVeinScene.unity
     guid: 119cea11720376f43b5fb6ee6c81619b
+  - enabled: 0
+    path: Assets/00_Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5a5a07bfac2fc5344a7b74a0685f0d01, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 39b33c6217d22204588f9bf1240a8c5d, type: 2}
