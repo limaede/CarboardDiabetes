@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Wall : MonoBehaviour
 {
@@ -8,7 +10,12 @@ public class Wall : MonoBehaviour
     float glucosa;
     float insulina;
     float llenacelula;
-    public int maxCelulasNoLlenas = 40;  // Límite de células no llenas para Game Over
+    public int maxCelulasNoLlenas = 30;  // Límite de células no llenas para Game Over
+
+    [Header("UI")]
+    public Image celulas;
+   // public float celulasActuales;
+    //public float celulasMaxima;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +26,7 @@ public class Wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        celulas.fillAmount = celula / maxCelulasNoLlenas;
         // Comprobamos si el contador de células no llenas alcanzó el límite
         if (celula >= maxCelulasNoLlenas)
         {
@@ -47,11 +55,6 @@ public class Wall : MonoBehaviour
         Debug.Log("Game Over! Demasiadas células no llenas han pasado.");
 
         // Cerrar el juego
-        Application.Quit();
-
-        // Opcionalmente, puedes detener el juego en el editor si estás probando en Unity:
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        SceneManager.LoadSceneAsync(0);
     }
 }
